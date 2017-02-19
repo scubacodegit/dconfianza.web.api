@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dconfianzaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="spContacMessageInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Message" Type="varchar(max)" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spLocationSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spSelectActiveWorkersByLocationAndService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+          <Parameter Name="ServiceID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spSelectServiceByLocationID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spServiceSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spWorkeReviewSelectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WorkerID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spWorkerInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+          <Parameter Name="MobilPhone" Type="varchar" Mode="In" />
+          <Parameter Name="WorkPhone" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+          <Parameter Name="ServiceID" Type="int" Mode="In" />
+          <Parameter Name="Resume" Type="varchar(max)" Mode="In" />
+          <Parameter Name="CreatedByID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spWorkerReviewInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="WorkerID" Type="float" Mode="In" />
+          <Parameter Name="Review" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Rating" Type="float" Mode="In" />
+        </Function>
+        <Function Name="spWorkerSelectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WorkerID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spFindUserByEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="reg">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spInsertUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="reg">
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="FacebookID" Type="bigint" Mode="In" />
+          <Parameter Name="Password" Type="binary" Mode="In" />
+        </Function>
+        <Function Name="spLoginByEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="reg">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="binary" Mode="In" />
+        </Function>
+        <Function Name="spSelectUserByEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="reg">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spSelectUserByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="reg">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="dconfianzaModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dconfianzaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dconfianzaEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="spContacMessageInsert" ReturnType="Collection(dconfianzaModel.spContacMessageInsert_Result)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Message" Mode="In" Type="String" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spLocationSelectAll" ReturnType="Collection(dconfianzaModel.spLocationSelectAll_Result)" />
+          <FunctionImport Name="spSelectActiveWorkersByLocationAndService" ReturnType="Collection(dconfianzaModel.spSelectActiveWorkersByLocationAndService_Result)">
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+            <Parameter Name="ServiceID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spSelectServiceByLocationID" ReturnType="Collection(dconfianzaModel.spSelectServiceByLocationID_Result)">
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spServiceSelectAll" ReturnType="Collection(dconfianzaModel.spServiceSelectAll_Result)" />
+          <FunctionImport Name="spWorkeReviewSelectByID" ReturnType="Collection(dconfianzaModel.spWorkeReviewSelectByID_Result)">
+            <Parameter Name="WorkerID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spWorkerInsert" ReturnType="Collection(dconfianzaModel.spWorkerInsert_Result)">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="MobilPhone" Mode="In" Type="String" />
+            <Parameter Name="WorkPhone" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+            <Parameter Name="ServiceID" Mode="In" Type="Int32" />
+            <Parameter Name="Resume" Mode="In" Type="String" />
+            <Parameter Name="CreatedByID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spWorkerReviewInsert" ReturnType="Collection(dconfianzaModel.spWorkerReviewInsert_Result)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="WorkerID" Mode="In" Type="Double" />
+            <Parameter Name="Review" Mode="In" Type="String" />
+            <Parameter Name="Rating" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="spWorkerSelectByID" ReturnType="Collection(dconfianzaModel.spWorkerSelectByID_Result)">
+            <Parameter Name="WorkerID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="reg_spSelectUserByID" ReturnType="Collection(dconfianzaModel.reg_spSelectUserByID_Result)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="reg_spSelectUserByEmail" ReturnType="Collection(dconfianzaModel.reg_spSelectUserByEmail_Result)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="reg_spLoginByEmail" ReturnType="Collection(Int32)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="reg_spFindUserByEmail" ReturnType="Collection(dconfianzaModel.reg_spFindUserByEmail_Result)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="reg_spInsertUser" ReturnType="Collection(dconfianzaModel.reg_spInsertUser_Result)">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="FacebookID" Mode="In" Type="Int64" />
+            <Parameter Name="Password" Mode="In" Type="Binary" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spLocationSelectAll_Result">
+          <Property Type="Int32" Name="LocationID" Nullable="false" />
+          <Property Type="String" Name="LocationName" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spSelectActiveWorkersByLocationAndService_Result">
+          <Property Type="Int32" Name="WorkerID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MobilPhone" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="WorkPhone" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="LocationID" Nullable="false" />
+          <Property Type="String" Name="LocationName" Nullable="false" />
+          <Property Type="Double" Name="Rating" Nullable="true" />
+          <Property Type="String" Name="Resume" Nullable="true" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="CreatedByID" Nullable="false" />
+          <Property Type="String" Name="CreatedByFirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CreatedByLastName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ServiceID" Nullable="false" />
+          <Property Type="String" Name="ServiceName" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spSelectServiceByLocationID_Result">
+          <Property Type="Int32" Name="ServiceID" Nullable="false" />
+          <Property Type="String" Name="ServiceName" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spServiceSelectAll_Result">
+          <Property Type="Int32" Name="ServiceID" Nullable="false" />
+          <Property Type="String" Name="ServiceName" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spWorkeReviewSelectByID_Result">
+          <Property Type="Int32" Name="WorkerReviewID" Nullable="false" />
+          <Property Type="Int32" Name="WorkerID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Review" Nullable="false" />
+          <Property Type="Double" Name="Rating" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="CreatedByID" Nullable="false" />
+          <Property Type="String" Name="CreatedByFirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CreatedByLastName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spWorkerSelectByID_Result">
+          <Property Type="Int32" Name="WorkerID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MobilPhone" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="WorkPhone" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="LocationID" Nullable="false" />
+          <Property Type="String" Name="LocationName" Nullable="false" />
+          <Property Type="Double" Name="Rating" Nullable="true" />
+          <Property Type="String" Name="Resume" Nullable="true" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="CreatedByID" Nullable="false" />
+          <Property Type="String" Name="CreatedByFirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CreatedByLastName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ServiceID" Nullable="false" />
+          <Property Type="String" Name="ServiceName" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spContacMessageInsert_Result">
+          <Property Type="Decimal" Name="ContactMessageID" Nullable="true" Precision="38" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="spWorkerInsert_Result">
+          <Property Type="Int32" Name="WorkerID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spWorkerReviewInsert_Result">
+          <Property Type="Decimal" Name="WorkerReviewID" Nullable="true" Precision="38" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="reg_spSelectUserByID_Result">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="Int64" Name="FacebookID" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="80" />
+          <Property Type="Binary" Name="Password" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ResetPasswordToken" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="ResetPasswordRequestDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Gender" Nullable="true" />
+          <Property Type="DateTime" Name="BirthDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="ActivationDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="TerminationDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsApproved" Nullable="true" />
+          <Property Type="Boolean" Name="IsLockedOut" Nullable="true" />
+          <Property Type="DateTime" Name="LastLoginDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="LastUpdatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="LastUpdatedBy" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="reg_spSelectUserByEmail_Result">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="Int64" Name="FacebookID" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="80" />
+          <Property Type="Binary" Name="Password" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ResetPasswordToken" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="ResetPasswordRequestDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Gender" Nullable="true" />
+          <Property Type="DateTime" Name="BirthDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="ActivationDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="TerminationDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsApproved" Nullable="true" />
+          <Property Type="Boolean" Name="IsLockedOut" Nullable="true" />
+          <Property Type="DateTime" Name="LastLoginDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="LastUpdatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="LastUpdatedBy" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spInsertUser_Result">
+          <Property Type="Decimal" Name="UserID" Nullable="true" Precision="38" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="reg_spFindUserByEmail_Result">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="reg_spInsertUser_Result">
+          <Property Type="Decimal" Name="UserID" Nullable="true" Precision="38" Scale="0" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dconfianzaModelStoreContainer" CdmEntityContainer="dconfianzaEntities" >
+          <FunctionImportMapping FunctionImportName="spContacMessageInsert" FunctionName="dconfianzaModel.Store.spContacMessageInsert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dconfianzaModel.spContacMessageInsert_Result">
+                <ScalarProperty Name="ContactMessageID" ColumnName="ContactMessageID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spLocationSelectAll" FunctionName="dconfianzaModel.Store.spLocationSelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dconfianzaModel.spLocationSelectAll_Result">
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spSelectActiveWorkersByLocationAndService" FunctionName="dconfianzaModel.Store.spSelectActiveWorkersByLocationAndService">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dconfianzaModel.spSelectActiveWorkersByLocationAndService_Result">
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MobilPhone" ColumnName="MobilPhone" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Resume" ColumnName="Resume" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+                <ScalarProperty Name="CreatedByFirstName" ColumnName="CreatedByFirstName" />
+                <ScalarProperty Name="CreatedByLastName" ColumnName="CreatedByLastName" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spSelectServiceByLocationID" FunctionName="dconfianzaModel.Store.spSelectServiceByLocationID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dconfianzaModel.spSelectServiceByLocationID_Result">
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spServiceSelectAll" FunctionName="dconfianzaModel.Store.spServiceSelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dconfianzaModel.spServiceSelectAll_Result">
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spWorkeReviewSelectByID" FunctionName="dconfianzaModel.Store.spWorkeReviewSelectByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dconfianzaModel.spWorkeReviewSelectByID_Result">
+                <ScalarProperty Name="WorkerReviewID" ColumnName="WorkerReviewID" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Review" ColumnName="Review" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+                <ScalarProperty Name="CreatedByFirstName" ColumnName="CreatedByFirstName" />
+                <ScalarProperty Name="CreatedByLastName" ColumnName="CreatedByLastName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spWorkerInsert" FunctionName="dconfianzaModel.Store.spWorkerInsert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dconfianzaModel.spWorkerInsert_Result">
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spWorkerReviewInsert" FunctionName="dconfianzaModel.Store.spWorkerReviewInsert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dconfianzaModel.spWorkerReviewInsert_Result">
+                <ScalarProperty Name="WorkerReviewID" ColumnName="WorkerReviewID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spWorkerSelectByID" FunctionName="dconfianzaModel.Store.spWorkerSelectByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dconfianzaModel.spWorkerSelectByID_Result">
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MobilPhone" ColumnName="MobilPhone" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Resume" ColumnName="Resume" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+                <ScalarProperty Name="CreatedByFirstName" ColumnName="CreatedByFirstName" />
+                <ScalarProperty Name="CreatedByLastName" ColumnName="CreatedByLastName" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="reg_spSelectUserByID" FunctionName="dconfianzaModel.Store.spSelectUserByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dconfianzaModel.reg_spSelectUserByID_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FacebookID" ColumnName="FacebookID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ResetPasswordToken" ColumnName="ResetPasswordToken" />
+                <ScalarProperty Name="ResetPasswordRequestDate" ColumnName="ResetPasswordRequestDate" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="reg_spSelectUserByEmail" FunctionName="dconfianzaModel.Store.spSelectUserByEmail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dconfianzaModel.reg_spSelectUserByEmail_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FacebookID" ColumnName="FacebookID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ResetPasswordToken" ColumnName="ResetPasswordToken" />
+                <ScalarProperty Name="ResetPasswordRequestDate" ColumnName="ResetPasswordRequestDate" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="reg_spLoginByEmail" FunctionName="dconfianzaModel.Store.spLoginByEmail">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="reg_spFindUserByEmail" FunctionName="dconfianzaModel.Store.spFindUserByEmail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dconfianzaModel.reg_spFindUserByEmail_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="reg_spInsertUser" FunctionName="dconfianzaModel.Store.spInsertUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dconfianzaModel.reg_spInsertUser_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
